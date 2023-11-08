@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 30, 2021 at 09:28 PM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.0.33
+-- Generation Time: Dec 06, 2022 at 04:55 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `aci_leave`
+-- Database: `leave_staff`
 --
 
 -- --------------------------------------------------------
@@ -32,7 +31,7 @@ CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
   `UserName` varchar(100) NOT NULL,
   `Password` varchar(100) NOT NULL,
-  `updationDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP
+  `updationDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -52,7 +51,7 @@ CREATE TABLE `tbldepartments` (
   `id` int(11) NOT NULL,
   `DepartmentName` varchar(150) DEFAULT NULL,
   `DepartmentShortName` varchar(100) NOT NULL,
-  `CreationDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+  `CreationDate` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -60,8 +59,9 @@ CREATE TABLE `tbldepartments` (
 --
 
 INSERT INTO `tbldepartments` (`id`, `DepartmentName`, `DepartmentShortName`, `CreationDate`) VALUES
-(2, 'Information Technologies', 'ICT', '2017-11-01 07:19:37'),
-(3, 'Library', 'LIb', '2021-05-21 08:27:45');
+(2, 'Computer Science and Engineering', 'CSE', '2017-11-01 07:19:37'),
+(3, 'Library', 'LIb', '2021-05-21 08:27:45'),
+(4, 'Electronic and Communication Engineering', 'ece', '2022-11-30 06:24:05');
 
 -- --------------------------------------------------------
 
@@ -82,7 +82,7 @@ CREATE TABLE `tblemployees` (
   `Av_leave` varchar(150) NOT NULL,
   `Phonenumber` char(11) NOT NULL,
   `Status` int(1) NOT NULL,
-  `RegDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `RegDate` timestamp NOT NULL DEFAULT current_timestamp(),
   `role` varchar(30) NOT NULL,
   `location` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -92,13 +92,14 @@ CREATE TABLE `tblemployees` (
 --
 
 INSERT INTO `tblemployees` (`emp_id`, `FirstName`, `LastName`, `EmailId`, `Password`, `Gender`, `Dob`, `Department`, `Address`, `Av_leave`, `Phonenumber`, `Status`, `RegDate`, `role`, `location`) VALUES
-(1, 'Janobe', 'Martins', 'janobe@janobe.com', '36d59e2369f00c4d9f336acf4408bae9', 'Male', '3 February, 1990', 'ICT', 'N NEPO', '30', '0248865955', 1, '2017-11-10 11:29:59', 'Staff', 'NO-IMAGE-AVAILABLE.jpg'),
-(2, 'Edem', 'Mcwilliams', 'james@gmail.com', 'b4cc344d25a2efe540adbf2678e2304c', 'Male', '3 February, 1990', 'ICT', 'N NEPO', '30', '8587944255', 1, '2017-11-10 13:40:02', 'Admin', 'photo2.jpg'),
-(4, 'Nathaniel', 'Nkrumah', 'nat@gmail.com', 'b4cc344d25a2efe540adbf2678e2304c', 'Male', '3 February, 1990', 'ICT', 'N NEPO', '30', '587944255', 1, '2017-11-10 13:40:02', 'Admin', 'NO-IMAGE-AVAILABLE.jpg'),
-(5, 'Gideon', 'Annan', 'gideon@gmail.com', 'b4cc344d25a2efe540adbf2678e2304c', 'Male', '3 February, 1990', 'ICT', 'N NEPO', '30', '587944255', 1, '2017-11-10 13:40:02', 'HOD', 'photo5.jpg'),
-(6, 'Martha', 'Arthur', 'mat@gmail.com', 'b4cc344d25a2efe540adbf2678e2304c', 'Female', '3 February, 1990', 'LIb', 'N NEPO', '30', '587944255', 1, '2017-11-10 13:40:02', 'Staff', 'NO-IMAGE-AVAILABLE.jpg'),
-(7, 'Bridget', 'Gafa', 'bridget@gmail.com', 'b4cc344d25a2efe540adbf2678e2304c', 'Female', '3 February, 1990', 'ICT', 'N NEPO', '1', '0596667981', 1, '2017-11-10 13:40:02', 'Staff', '1920_File_logo4.png'),
-(8, 'Anna', 'Mensah', 'an@gmail.com', 'b4cc344d25a2efe540adbf2678e2304c', 'Female', '3 February, 1990', 'ICT', 'N NEPO', '30', '587944255', 1, '2017-11-10 13:40:02', 'HOD', 'NO-IMAGE-AVAILABLE.jpg');
+(1, 'madumidtha', 'MP', 'madhu@gmail.com', '5f4dcc3b5aa765d61d8327deb882cf99', 'Male', '3 February, 1990', 'CSE', 'N NEPO', '26', '0248865955', 1, '2017-11-10 11:29:59', 'Staff', 'lms.png'),
+(2, 'Alwarswamy', 'T', 'alwar@gmail.com', '5f4dcc3b5aa765d61d8327deb882cf99', 'Male', '14 may,1970', 'ALL', 'N NEPO', '30', '8587944255', 1, '2017-11-10 13:40:02', 'Admin', 'NO-IMAGE-AVAILABLE.jpg'),
+(4, 'Vijayan', 'R', 'vijayan@gmail.com', '5f4dcc3b5aa765d61d8327deb882cf99', 'Male', '2 june,1989', 'ALL', 'N NEPO', '30', '587944255', 1, '2022-11-01 13:40:02', 'Admin', 'NO-IMAGE-AVAILABLE.jpg'),
+(5, 'Nafeesa', 'Begam', 'nafeesa@gmail.com', '5f4dcc3b5aa765d61d8327deb882cf99', 'Male', '13 september, 1975', 'CSE', 'N NEPO', '30', '587944255', 1, '2022-11-02 06:02:59', 'HOD', 'NO-IMAGE-AVAILABLE.jpg'),
+(6, 'Gaja', 'lakshmi', 'gaja@gmail.com', '5f4dcc3b5aa765d61d8327deb882cf99', 'Female', '29 september, 2004', 'CSE', 'N NEPO', '30', '587944255', 1, '2022-11-14 00:07:09', 'Student', 'NO-IMAGE-AVAILABLE.jpg'),
+(7, 'Ramya', 'S', 'ramya@gmail.com', '5f4dcc3b5aa765d61d8327deb882cf99', 'Female', '26 April, 2000 ', 'CSE', 'N NEPO', '1', '0596667981', 1, '2022-11-15 10:02:14', 'Student', 'NO-IMAGE-AVAILABLE.jpg'),
+(8, 'Letitia', 'S', 'letitia@gmail.com', '5f4dcc3b5aa765d61d8327deb882cf99', 'Female', '29 February,1977', 'ECE', 'N NEPO', '30', '587944255', 1, '2022-11-16 05:17:13', 'HOD', 'NO-IMAGE-AVAILABLE.jpg'),
+(9, 'Revi', 'k', 'revi@gmail.com', '5f4dcc3b5aa765d61d8327deb882cf99', 'Male', '26 June,2001', 'ECE', 'ABC street, chennai,TN', '15', '1234567890', 1, '2022-11-30 06:31:54', 'Student', 'NO-IMAGE-AVAILABLE.jpg');
 
 -- --------------------------------------------------------
 
@@ -113,11 +114,11 @@ CREATE TABLE `tblleaves` (
   `FromDate` varchar(120) NOT NULL,
   `Description` mediumtext NOT NULL,
   `PostingDate` date NOT NULL,
-  `AdminRemark` mediumtext,
+  `AdminRemark` mediumtext DEFAULT NULL,
   `registra_remarks` mediumtext NOT NULL,
   `AdminRemarkDate` varchar(120) DEFAULT NULL,
   `Status` int(1) NOT NULL,
-  `admin_status` int(11) NOT NULL DEFAULT '0',
+  `admin_status` int(11) NOT NULL DEFAULT 0,
   `IsRead` int(1) NOT NULL,
   `empid` int(11) DEFAULT NULL,
   `num_days` int(11) NOT NULL
@@ -128,10 +129,14 @@ CREATE TABLE `tblleaves` (
 --
 
 INSERT INTO `tblleaves` (`id`, `LeaveType`, `ToDate`, `FromDate`, `Description`, `PostingDate`, `AdminRemark`, `registra_remarks`, `AdminRemarkDate`, `Status`, `admin_status`, `IsRead`, `empid`, `num_days`) VALUES
-(13, 'Casual Leave', '2021-05-02', '2021-05-12', 'I want to take a leave.', '2021-05-20', 'Ok', 'ok', '2021-05-24 20:26:19 ', 1, 1, 1, 7, 3),
-(14, 'Medical Leave', '08-05-2021', '11-05-2021', 'Noted', '0000-00-00', 'Not this time', '', '2021-05-21 0:31:10 ', 0, 0, 1, 6, 4),
-(16, 'Casual Leave', '02-05-2021', '05-05-2021', 'Nice Leave', '2021-05-20', 'Ok', 'Noted', '2021-05-24 20:42:18 ', 1, 1, 1, 7, 4),
-(17, 'Casual Leave', '11-05-2021', '15-05-2021', 'Just', '2021-05-21', 'Leave Approved', 'Noted', '2021-05-24 19:56:45 ', 1, 1, 1, 7, 5);
+(18, 'Casual Leave', '29-11-2022', '30-11-2022', 'gbhgfn', '2022-11-28', 'Approved', 'approvd', '2022-11-28 21:32:49 ', 1, 1, 1, 1, 2),
+(19, 'Casual Leave', '29-11-2022', '30-11-2022', 'Work at home', '2022-11-28', 'not needed', 'Leave was Rejected. Registra/Registry will not see it', '2022-11-29 9:43:08 ', 2, 2, 1, 1, 2),
+(20, 'Casual Leave', '29-11-2022', '30-11-2022', 'Work', '2022-11-29', 'ok', 'ok', '2022-11-29 11:56:50 ', 1, 1, 1, 1, 2),
+(21, 'Medical Leave', '29-11-2022', '30-11-2022', 'summa', '2022-11-29', 'grant', '', '2022-11-30 10:09:11 ', 1, 0, 1, 6, 2),
+(22, 'Medical Leave', '05-12-2022', '09-11-2022', 'Sick and fever', '2022-11-30', NULL, '', NULL, 0, 0, 0, 7, 27),
+(23, 'Casual Leave', '30-11-2022', '30-11-2022', 'Work at home', '2022-11-30', NULL, '', NULL, 0, 0, 0, 6, 1),
+(24, 'Casual Leave', '02-11-2022', '04-11-2022', 'need', '2022-11-30', NULL, '', NULL, 0, 0, 0, 5, 3),
+(25, 'Medical Leave', '04-11-2022', '06-11-2022', 's', '2022-11-30', NULL, '', NULL, 0, 0, 0, 5, 3);
 
 -- --------------------------------------------------------
 
@@ -142,10 +147,10 @@ INSERT INTO `tblleaves` (`id`, `LeaveType`, `ToDate`, `FromDate`, `Description`,
 CREATE TABLE `tblleavetype` (
   `id` int(11) NOT NULL,
   `LeaveType` varchar(200) DEFAULT NULL,
-  `Description` mediumtext,
+  `Description` mediumtext DEFAULT NULL,
   `date_from` varchar(200) NOT NULL,
   `date_to` varchar(200) NOT NULL,
-  `CreationDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `CreationDate` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -153,9 +158,9 @@ CREATE TABLE `tblleavetype` (
 --
 
 INSERT INTO `tblleavetype` (`id`, `LeaveType`, `Description`, `date_from`, `date_to`, `CreationDate`) VALUES
-(5, 'Casual Leave', 'Casual Leave', '2021-05-23', '2021-06-20', '2021-05-19 14:32:03'),
-(6, 'Medical Leave', 'Medical Leave', '2021-05-05', '2021-05-28', '2021-05-19 15:29:05'),
-(8, 'Other', 'Leave all staff', '31-05-2021', '04-06-2021', '2021-05-20 17:17:43');
+(5, 'Casual Leave', 'Casual Leave', '2022-11-23', '2022-11-25', '2021-05-19 14:32:03'),
+(6, 'Medical Leave', 'Medical Leave', '2022-11-05', '2022-12-05', '2021-05-19 15:29:05'),
+(8, 'Other', 'Leave all staff and student', '2022-11-30', '2022-12-05', '2021-05-20 17:17:43');
 
 --
 -- Indexes for dumped tables
@@ -206,19 +211,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `tbldepartments`
 --
 ALTER TABLE `tbldepartments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tblemployees`
 --
 ALTER TABLE `tblemployees`
-  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tblleaves`
 --
 ALTER TABLE `tblleaves`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `tblleavetype`
